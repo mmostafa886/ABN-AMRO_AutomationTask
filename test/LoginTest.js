@@ -6,7 +6,7 @@ fixture("ABN-AMRO Login & Logout Verification").page(
   "http://localhost:8081/testautomation-web/"
 );
 
-test("Failed TC", async (t) => {
+test("Failed TC To be showed on the Report", async (t) => {
   await AppPage.userLogin(ValidCredens.email, ValidCredens.password);
   await t
     .expect(await AppPage.getNavBarStyle())
