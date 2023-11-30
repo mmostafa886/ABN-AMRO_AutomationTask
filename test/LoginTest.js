@@ -6,7 +6,7 @@ fixture("ABN-AMRO Login & Logout Verification").page(
   "http://localhost:8081/testautomation-web/"
 );
 
-test.skip("Trial TC", async (t) => {
+test("Failed TC", async (t) => {
   await AppPage.userLogin(ValidCredens.email, ValidCredens.password);
   await t
     .expect(await AppPage.getNavBarStyle())
@@ -14,7 +14,7 @@ test.skip("Trial TC", async (t) => {
     .expect(await AppPage.homeIcon.visible)
     .ok();
   await AppPage.logOut();
-  await t.expect(await AppPage.homeIcon.visible).notOk();
+  await t.expect(await AppPage.homeIcon.visible).ok();
 });
 
 loginDataset.forEach((data) => {
