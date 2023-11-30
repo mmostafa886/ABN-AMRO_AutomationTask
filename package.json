@@ -4,7 +4,7 @@
   "description": "## Introduction",
   "main": "index.js",
   "scripts": {
-    "test:headless": "http-server -p 8081 & sleep 5 & npx testcafe chrome:headless test --reporter html:./reports/report.html",
+    "test:headless": "http-server -p 8081 & sleep 5 & npx testcafe chrome:headless test --reporter html:./reports/index.html",
     "test:chrome": "http-server -p 8081 & sleep 5 & npx testcafe chrome test && pkill -f \"http-server\"  ",
     "test:report": "http-server -p 8081 & sleep 5 & npx testcafe chrome test --reporter html:./reports/report_$(date +\"%Y-%m-%d_%H-%M-%S\").html && pkill -f \"http-server\" "
   },
