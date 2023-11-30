@@ -22,11 +22,11 @@ jobs:
         run: |
           npm run test:headless
 
-      - name: Upload HTML report
-        uses: actions/upload-artifact@v2
-        with:
-          name: testcafe-report
-          path: ./reports  # The folder where the HTML report is generated
+#      - name: Upload HTML report
+ #       uses: actions/upload-artifact@v2
+  #      with:
+   #       name: testcafe-report
+    #      path: ./reports  # The folder where the HTML report is generated
           
       - name: Deploy report to Github Pages
         if: always()
@@ -34,4 +34,4 @@ jobs:
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./reports
+          PUBLISH_DIR: reports
