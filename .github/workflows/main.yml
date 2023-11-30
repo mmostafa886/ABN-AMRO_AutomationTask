@@ -10,10 +10,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
 
       - name: Install dependencies
         run: npm install
@@ -21,16 +21,10 @@ jobs:
       - name: Run TestCafe tests and generate HTML report
         run: |
           npm run test:headless
-
-#      - name: Upload HTML report
- #       uses: actions/upload-artifact@v2
-  #      with:
-   #       name: testcafe-report
-    #      path: ./reports  # The folder where the HTML report is generated
-          
+     
       - name: Deploy report to Github Pages
         if: always()
-        uses: peaceiris/actions-gh-pages@v2
+        uses: peaceiris/actions-gh-pages@v3
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
