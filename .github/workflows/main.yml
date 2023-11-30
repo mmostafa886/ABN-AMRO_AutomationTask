@@ -1,0 +1,36 @@
+name: Basic TestCafe Workflow
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    name: Run TestCafe & Generate Report
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run TestCafe tests and generate HTML report
+        run: |
+          npm run test:headless
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v2
+        with:
+          name: testcafe-report
+          path: ./reports  # The folder where the HTML report is generated
+          
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
