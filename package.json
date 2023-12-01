@@ -4,10 +4,12 @@
   "description": "## Introduction",
   "main": "index.js",
   "scripts": {
-    "test:screenshots": "http-server -p 8081 & sleep 5 & npx testcafe chrome:headless test --screenshots ./screenshots --screenshots-on-fails --reporter html:./reports/index.html && pkill -f \"http-server\" ",
-    "test:headless": "http-server -p 8081 & sleep 5 & npx testcafe chrome:headless test --screenshots ./screenshots --screenshots-on-fails --reporter html:./reports/index.html",
-    "test:chrome": "http-server -p 8081 & sleep 5 & npx testcafe chrome test && pkill -f \"http-server\"  ",
-    "test:report": "http-server -p 8081 & sleep 5 & npx testcafe chrome test --reporter html:./reports/report_$(date +\"%Y-%m-%d_%H-%M-%S\").html && pkill -f \"http-server\" "
+    "test:chrome": "http-server -p 8081 & sleep 5 & npx testcafe chrome test && pkill -f \"http-server\" ",
+    "test:chromeheadless": "http-server -p 8081 & sleep 5 & npx testcafe chrome:headless test && pkill -f \"http-server\"",
+    "test:ff": "http-server -p 8081 & sleep 5 & npx testcafe firefox test && pkill -f \"http-server\" ",
+    "test:ffheadless": "http-server -p 8081 & sleep 5 & npx testcafe firefox:headless test && pkill -f \"http-server\" ",
+    "test:customreport": "http-server -p 8081 & sleep 5 & npx testcafe chrome test --reporter html:./reports/report_$(date +\"%Y-%m-%d_%H-%M-%S\").html && pkill -f \"http-server\" ",
+    "test:ghactions": "http-server -p 8081 & sleep 5 & npx testcafe chrome:headless test " 
   },
   "author": "",
   "license": "ISC",
