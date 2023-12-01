@@ -73,7 +73,7 @@
       <div class="client-logo" style="padding:15px"></div>
       <div class="bg-primary" style="padding:15px;box-shadow: 6px 6px 6px 6px #00000033;border-radius: 10px;">
         <h3>Summary</h3><br>
-        <p class="lead">Start Time: Fri Dec 01 2023 19:59:46 GMT+0000 (Coordinated Universal Time)</p>
+        <p class="lead">Start Time: Fri Dec 01 2023 21:17:50 GMT+0000 (Coordinated Universal Time)</p>
         <p class="lead">Browsers: Chrome 119.0.6045.159 / Ubuntu 22.04</p>
         <p class="lead">Duration: 10s</p>
         <p class="lead">Tests Failed: 1 out of 8</p>
@@ -182,21 +182,21 @@
  <pre style="padding:15px;box-shadow: 6px 6px 6px 6px #00000033;border-radius: 10px;">AssertionError: expected false to be truthy
 
 Browser: Chrome 119.0.6045.159 / Ubuntu 22.04
-Screenshot: /home/runner/work/ABN-AMRO_AutomationTask/ABN-AMRO_AutomationTask/screenshots/2023-12-01_19-59-45/test-1/Chrome_119.0.6045.159_Ubuntu_22.04/errors/1.png
+Screenshot: /home/runner/work/ABN-AMRO_AutomationTask/ABN-AMRO_AutomationTask/screenshots/2023-12-01_21-17-50/test-1/Chrome_119.0.6045.159_Ubuntu_22.04/errors/1.png
 
-   12 |    .expect(await AppPage.getNavBarStyle())
-   13 |    .contains(ValidCredens.display)
-   14 |    .expect(await AppPage.homeIcon.visible)
-   15 |    .ok();
-   16 |  await AppPage.logOut();
- &gt; 17 |  await t.expect(await AppPage.homeIcon.visible).ok();
-   18 |&#125);
-   19 |
-   20 |loginDataset.forEach((data) =&gt; &#123
-   21 |  test(
-   22 |    &quot;Verify Valid &amp; Invalid logging credentials_&quot; + data.validity,
+   16 |    .expect(await AppPage.getNavBarStyle())
+   17 |    .contains(ValidCredens.display)
+   18 |    .expect(await AppPage.homeIcon.visible)
+   19 |    .ok();
+   20 |  await AppPage.logOut();
+ &gt; 21 |  await t.expect(await AppPage.homeIcon.visible).ok();
+   22 |&#125);
+   23 |
+   24 |loginDataset.forEach((data) =&gt; &#123
+   25 |  test.meta(&quot;tags&quot;, &quot;smoke&quot;)(
+   26 |    &quot;Verify Valid &amp; Invalid logging credentials_&quot; + data.validity,
 
-   at &lt;anonymous&gt; (/home/runner/work/ABN-AMRO_AutomationTask/ABN-AMRO_AutomationTask/test/LoginTest.js:17:50)
+   at &lt;anonymous&gt; (/home/runner/work/ABN-AMRO_AutomationTask/ABN-AMRO_AutomationTask/test/LoginTest.js:21:50)
    at asyncGeneratorStep (/home/runner/work/ABN-AMRO_AutomationTask/ABN-AMRO_AutomationTask/test/LoginTest.js:2:58)
    at _next (/home/runner/work/ABN-AMRO_AutomationTask/ABN-AMRO_AutomationTask/test/LoginTest.js:2:58) </pre><br>
     </div>
