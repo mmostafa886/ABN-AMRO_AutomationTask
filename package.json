@@ -6,12 +6,15 @@
   "scripts": {
     "server:start":"http-server -p 8081 & sleep 5",
     "server:stop":"pkill -f \"http-server\"",
-    "test:chrome": "npm run server:start & npx testcafe chrome test || npm run server:stop ",
-    "test:chromeheadless": "npm run server:start & npx testcafe chrome:headless test || npm run server:stop ",
-    "test:ff": "npm run server:start & npx testcafe firefox test || npm run server:stop ",
-    "test:ffheadless": "npm run server:start & npx testcafe firefox:headless test || npm run server:stop ",
-    "test:customreport": "npm run server:start & npx testcafe chrome test --reporter html:./reports/report_$(date +\"%Y-%m-%d_%H-%M-%S\").html || npm run server:stop ",
-    "test:ghactions": "npm run server:start & npx testcafe chrome:headless test || npm run server:stop " 
+    "test:chrome": "npm run server:start & npx testcafe chrome test/LoginTest.js || npm run server:stop ",
+    "test:chromeheadless": "npm run server:start & npx testcafe chrome:headless test/LoginTest.js || npm run server:stop ",
+    "test:ff": "npm run server:start & npx testcafe firefox test/LoginTest.js || npm run server:stop ",
+    "test:ffheadless": "npm run server:start & npx testcafe firefox:headless test/LoginTest.js || npm run server:stop ",
+    "test:customreport": "npm run server:start & npx testcafe chrome test/LoginTest.js --reporter html:./reports/report_$(date +\"%Y-%m-%d_%H-%M-%S\").html || npm run server:stop ",
+    "test:parallelmethods": "npm run server:start & npx testcafe -c 2 chrome test/LoginTest.js || npm run server:stop ",
+    "test:paralleltests": "npm run server:start & npx testcafe -c 3 chrome test || npm run server:stop ",
+    "test:tags": " npm run server:start & npx testcafe chrome test --test-meta tags=smoke || npm run server:stop ",
+    "test:ghactions": "npm run test:chromeheadless" 
   },
   "author": "",
   "license": "ISC",
