@@ -1,9 +1,10 @@
+import env from "../environments.json";
 import AppPage from "../pages/AppPage";
 import ValidCredens from "../testData/ValidCredens.json";
 const loginDataset = require("../testData/LoginCredentials.json");
 
 fixture("ABN-AMRO Login & Logout Verification").page(
-  "http://localhost:8081/testautomation-web/"
+  "http://"+env.url+":8081/testautomation-web/"
 );
 
 test.meta(

@@ -1,0 +1,10 @@
+    {
+        "url":"localhost",
+        "avaiable_urls":
+        {
+            "localhost": "localhost",
+            "dockerhost": "192.168.178.55"
+        }
+    }
+
+    

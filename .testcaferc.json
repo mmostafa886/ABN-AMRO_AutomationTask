@@ -4,8 +4,12 @@
         "takeOnFails": true,
         "pathPattern": "${DATE}_${TIME}/test-${TEST_INDEX}/${USERAGENT}/${FILE_INDEX}.png"
     },
-    "reporter": {
+    "reporter": [{
+        "name": "spec"
+    },
+    {
         "name": "html",
         "output": "reports/index.html"
-    }
+    }]
+
 }
