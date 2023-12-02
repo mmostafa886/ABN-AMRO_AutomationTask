@@ -10,7 +10,7 @@
 2.  VSCode (IDE).
 3.  Testcafe
 4.  Web browsers (at least Chrome)
-5.  Docker (TBD)
+5.  Docker
     And of course internet connectivity
 
 ## How to Run the scripts
@@ -35,36 +35,38 @@ We have different ways to execute the prepared script
 
        `$ npx testcafe all test`
  
-    8. In case it is needed to generate a report, the user can run the command (testacafe <Browser> test --reporter html:./reports/report_$(date +"%Y-%m-%d_%H-%M-%S").html) whis will create <report_currentDate/Time>.html file in the 'reports' folder in the project root directory & the user can open by the preferred browser.
-    9. Another way to execute the tests is to use the "test" commands prepared in the "package.json" [while skip the points (4 >> 8)] (Ex. 'npm run test:report' or 'npm run test:chrome').
+    8. In case it is needed to generate a report, the user can run the command (testacafe <Browser> test --reporter html:./reports/report_$(date +"%Y-%m-%d_%H-%M-%S").html) which will create <report_currentDate/Time>.html file in the 'reports' folder in the project root directory & the user can open by the preferred browser.
+    9. Another way to execute the tests is to use the "test" commands prepared in the "package.json" under the "scripts" section [skipping the points (4 >> 8)] (Ex. 'npm run test:report' or 'npm run test:chrome').
 
-2.  On Docker(a) TBD
+2.  On Docker
     1. Clone the repo.
-    2. Clone the testcafe official docker run the command (docker pull testcafe/testcafe)
-    3. Run the command (docker run -it --rm -v $PWD:/app testcafe/testcafe <Browser> app/test) on Terminal (System or VSCode).
-    4. This command runs a container from the image pulled in the previous step, copies the project contents there, executes the script and finally removes the container after the test execution completes.
-    5. Where <Browser> can be (chromium) or (chromium:headless)
-    6. Currently reports are not working with this execution configuration.
-3.  On Docker(b) TBD
-    1. Using one of the 2 files in the project root directory (Dockerfile_Chromium & Dockerfile_Firefox) & we can follow the same steps for either of them.
-    2. Rename the file to be ‘Dockerfile’ only without extension.
-    3. This file contains a set of steps on (base/initial docker image, what needs to be installed, set the working directory, copy the project contents,................)
-    4. On the Terminal, run the command (docker build -t <dock_image> .) to create a new image as per the configuration provided in the used ‘Dockerfile [where <dock\_image> is any name of small letters to be given for the new image]’.
-    5. Run the command (docker run --rm -it <dock_image>) to create a container from the image created in the previous step, execute the script then remove this container.
-    6. The file ‘Dockerfile_Chromium’ can be used to run the script with ‘chromium’ & the other one ‘Dockerfile_Firefox’ can be used to run the script with ‘firefox:headless’.
-    7. Currently reports are not working with this execution configuration.
+    2. In the terminal, run the command (./run_tests.sh) for Linux/Mac or (./run_tests.bat) for Windows (This should do all the steps for you starting from pulling the docker image till copying the report & screenshots folder and finally remove the container after execution).
+    3. The configuration of creating the ndocker image is found in the "Dockerfile" in the project's root directory.
 
-
-4.  On Github Actions
+3.  On Github Actions
     1. The project is configured to run a ‘Github Action Workflow’ every time there is a code push (and of course it can be executed on demand).
-    2. This workflow is using ‘Chrome’ as a browser on both the latest Windows & Linux-Ubuntu.
-    3. After the workflow finishes the execution, a report for each execution is generated and it can be found in the commpressed file in the "Artifacts" section of the workflow "Summary".
+    2. The configuration for this workflow can be found under (.github/workflows/main.yml)
+    3. After the workflow finishes the execution, a report for each is generated and published using the "GitHub Pages" under the URL (https://mmostafa886.github.io/ABN-AMRO_AutomationTask/).
 
 ## Notes
 1.  There are some comments provided on the script for clarification & highlighting of some points.
-2.  The hard coded values has been avoided as much as possible, instead JSON data files were used (These files are stored under "./testData" folder):
-3.  The parts related to screenshots in the script needs to be commented (in case of docker a or b) as they can’t be executed there, but they can they can work normally when running locally or with Github Actions [Those parts can be found in ./pages/ItemPage & ./pages/PayPage] TBD.
-4.  In the case of Docker-desktop, make sure of the network configuration on the host machine as it may cause connection issues (& hence script failure) if not properly configured TBD.
-5.  The Dockerfiles in the project are examples but for sure they can be configured as per need TBD.
-6.  Although the configured Github Actions workflow runs in case of code push, we can configure it or another workflow to run also periodically and in both cases, it can be executed on demand TBD.
+2.  A default configuration for all the tests (for screenshot taking & report generation) was added in the ".testcaferc.json" in the project's root directory (which will be always applied unless overridden in the execution command).
+3.  The hard coded values has been avoided as much as possible, instead JSON data files were used (These files are stored under "./testData" folder).
+4.  To ease the process of switching the environments, a file called "environments.json" file where we can change the IP part of the URL & paramertize this part of the fixture's URL (Of course depending on the where the app to be tested is publsihed [on lcoalhost or on other location]).
+5.  The app to be tested is part of the project & strting this app is already part of the scripts of the "package.json".
+6.  The scripts under the "scripts" section of the "package.json" provide the follwing:
+    - "server:start" & "server:stop" -> used whenever needed to start & stop the http server respectively (in case we need to start the app locally on the same machine used for test execution).
+    - "test:chrome" & "test:chromeheadless" -> execute the tests on chrome headed & headless respectively.
+    - "test:ff" & "test:ffheadless" -> execute the tests on firefox headed & headless respectively.
+    - "test:parallelmethods" & "test:paralleltests" -> run in parallel for methods in the same test and for tests respectvely.
+    - "test:tags" -> executing tests based on specific tags in the tests-meta.
+    - "test:ghactions" -> to be used by GitHubActions.
+7.  In case of Docker, make sure the user used during the execution has read/write privilages as we are copying folders/files from the docker container to the project folder under the host machine which requires this level of read/write privilages.
+8.  In the case of Docker-desktop, make sure of the network configuration on the host machine as it may cause connection issues (& hence script failure) if not properly configured.
+9.  Although the configured Github Actions workflow runs in case of code push, we can configure it or another workflow to run also periodically and in both cases, it can be executed on demand.
+
+## Possible Optimizations
+1.  Use a more complex reporting utility (Ex. Allure-report) as it provides more insights & statistics through keeping the history.
+2.  Prepare a docker image with FireFox allwoing containerization of this type of tests.
+3.  Improve the docker image by starting the 'http-server' & execute the test both from inside the docker conatiner.
 

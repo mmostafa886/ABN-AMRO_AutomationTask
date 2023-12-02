@@ -1,3 +1,8 @@
+/**
+ * As we are having a 'Single Page Application' & following the POM pattern, we have created this class for representing this page (with all the elements & promises)
+ * This way, it will be easy in the future if decided to add other pages to the web app
+ * It extends the 'PageBase' class which conatins all the necessary actions that can be taken on a single element
+ */
 import { t, Selector } from "testcafe";
 import PageBase from "./PageBase";
 

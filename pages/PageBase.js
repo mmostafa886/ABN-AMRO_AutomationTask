@@ -1,3 +1,9 @@
+/**
+ * The 'PageBase' class represents the base for the app pages (in case there are several pages & hence several page classes, all of them will extend this class)
+ * it contains all the main functionlaties that may need to be taken on a single element (enterText, clcikOnElement, ......)
+ * These actions may be taken on single element but they are a little bit complex in nature 
+ * (Ex. clcikOnElement >> the element needs to be visible first before we can perform the click action)
+ */
 import {t} from "testcafe";
 class PageBase{
 
