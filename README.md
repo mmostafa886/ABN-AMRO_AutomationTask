@@ -44,6 +44,7 @@ We have different ways to execute the prepared script
     3. Depnding on your OS, you may need to convert the corresponding `"run_tests"` script file (`"run_tests.sh"` for Linux/Mac or `"run_tests.bat"` for Windows) into an executable file (so that we can execute it from the Terminal/CMD) (In my case, Mac OS, I used the command `chmod +x run_tests_.sh` ).
     4. In the terminal, run the command `./run_tests.sh` for Linux/Mac or `./run_tests.bat` for Windows (This should do all the steps for you starting from pulling the docker image till copying the report & screenshots folder and finally remove the container after execution).
     5. The configuration the docker image creation can be found in the `"Dockerfile"` under the project's root directory.
+    6. After the execution got finished, 2 folders named  `"screenshots"` & `"reports"` will be copied to the project's root directory (They are generated through the test execution), At whcih the user can find `(screenshots taken upon test failure)` & `(test report in html format)`
 
 3.  On Github Actions
     1. The project is configured to run a ‘Github Action Workflow’ every time there is a code push (and of course this rul can be modified or it can be executed on demand).
@@ -53,6 +54,8 @@ We have different ways to execute the prepared script
 ## Notes
 1.  There are some comments provided on the script (& on all the files) for clarification & highlighting of some points.
 2.  A default configuration for all the tests (for screenshot taking & report generation) was added in the `".testcaferc.json"` in the project's root directory (which will be always applied unless overridden in the execution command).
+    1. Screnshots upon test failure will be taken during any test execution.
+    2. 2 reporting utilities are used during the test exeution (`"spec"`-> to display the live execution summary & `"html"`-> to generate html report with the full result of the test execution).
 3.  The hard coded values has been avoided as much as possible, instead JSON data files were used (These files are stored under `"./testData"` folder).
 4.  To make the process of switching the environments easier, a file called `"environments.json"` file where we can change the IP part of the URL & paramertize this part of the fixture's URL (Of course depending on the where the app to be tested is publsihed [on lcoalhost or on other location]).
 5.  The app to be tested is included as part of the project & starting this app is already part of the scripts of the `"package.json"`.
