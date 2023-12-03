@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Create the image
-docker build -t testimage . 
+docker build -t testimage -f ./Dockerfile_chrome . 
 
 # Wait for the container to complete
 wait $!

@@ -41,7 +41,7 @@ We have different ways to execute the prepared script
 2.  On Docker
     1. Prerequists (Docker must be installed).
     2. Clone the repo.
-    3. Depnding on your OS, you may need to convert the corresponding `"run_tests"` script file (`"run_tests.sh"` for Linux/Mac or `"run_tests.bat"` for Windows) into an executable file (so that we can execute it from the Terminal/CMD) (In my case, Mac OS, I used the command `chmod +x run_tests_.sh` ).
+    3. Depnding on your OS, you may need to convert the corresponding `"run_tests"` script file (`"run_tests.sh"` for Linux/Mac or `"run_tests.bat"` for Windows) into an executable file (so that we can execute it from the Terminal/CMD) (In my case, Mac OS, I used the command `chmod +x run_tests_chrome.sh` ).
     4. In the terminal, run the command `./run_tests.sh` for Linux/Mac or `./run_tests.bat` for Windows (This should do all the steps for you starting from pulling the docker image till copying the report & screenshots folder and finally remove the container after execution).
     5. The configuration the docker image creation can be found in the `"Dockerfile"` under the project's root directory.
 
