@@ -66,7 +66,7 @@ We have different ways to execute the prepared script
 7.  In case of Docker, make sure the user used during the execution has read/write privilages as we are copying folders/files from the docker container to the project folder under the host machine which requires this level of privilages.
 8.  In the case of Docker-desktop, make sure of the network configuration on the host machine as it may cause connection issues (& hence script failure) if not properly configured.
 9.  Although the configured Github Actions workflow runs in case of code push, we can configure it or add another workflow to run periodically and in both cases, it can be executed on demand.
-10. Another branch `"optimization_trials"` is created to work on the optimizations mentioned below (If the time allows for).
+10. Another branch `"optimization_trials"` is created to work on the optimizations mentioned below (Whenever the time allows for).
 
 ## Possible Optimizations
 1.  Use a more complex reporting utility (Ex. `"Allure-report"`) as it provides more insights & statistics through keeping the history.
